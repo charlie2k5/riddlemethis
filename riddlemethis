@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riddles Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .question-container {
+            display: none;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .answer-box {
+            padding: 10px;
+            font-size: 16px;
+            width: 90%;
+            max-width: 500px;
+            margin-bottom: 15px;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Riddles Game</h1>
+
+    <div id="question-1" class="question-container active">
+        <div class="question">>> If you are justice, please do not lie. What is the price for your blind eye?</div>
+        <input type="text" class="answer-box" id="answer-1" placeholder="Type your answer here...">
+        <button class="submit-btn" onclick="checkAnswer(1, 'bribery')">Submit Answer</button>
+        <div class="result" id="result-1"></div>
+    </div>
+
+    <div id="question-2" class="question-container">
+        <div class="question">>> When you lie, I strike. Death’s gentle friend is I. Who am I?</div>
+        <input type="text" class="answer-box" id="answer-2" placeholder="Type your answer here...">
+        <button class="submit-btn" onclick="checkAnswer(2, 'sleep')">Submit Answer</button>
+        <div class="result" id="result-2"></div>
+    </div>
+
+    <!-- Add more question blocks as needed -->
+
+    <script>
+        function checkAnswer(questionNumber, correctAnswer) {
+            const userAnswer = document.getElementById(`answer-${questionNumber}`).value.trim().toLowerCase();
+            const resultDiv = document.getElementById(`result-${questionNumber}`);
+
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                resultDiv.textContent = 'Correct!';
+                resultDiv.style.color = 'green';
+                const nextQuestion = document.getElementById(`question-${questionNumber + 1}`);
+                if (nextQuestion) {
+                    nextQuestion.classList.add('active');
+                }
+            } else {
+                resultDiv.textContent = 'Incorrect. Try again.';
+                resultDiv.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
